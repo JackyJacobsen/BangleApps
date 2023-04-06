@@ -1,5 +1,3 @@
-g.clear();
-
 function setAccelHighOutput() {
   Bangle.accelWr(0x18,0b01110100); // off, +-8g
   Bangle.accelWr(0x1B,0x08 | 0x40); // 1600hz output, ODR/2 filter
@@ -33,6 +31,8 @@ function exit() {
 }
 
 function init() {
+  g.clear();
+  setWatch(exit, BTN2);
   setAccelHighOutput();
   Bangle.on('accel', accelBluetoothHandler);
 }

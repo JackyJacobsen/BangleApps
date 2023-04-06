@@ -2,13 +2,12 @@
   "id": "accelstream",
   "name": "Acceleration Streamer",
   "shortName": "Accel Streamer",
-  "version": "0.09",
+  "version": "0.10",
   "description": "Sends acceleration data via Bluetooth",
   "icon": "app.png",
   "tags": "outdoor",
   "supports": ["BANGLEJS2"],
   "readme": "README.md",
-  "interface": "interface.html",
   "storage": [
     {"name":"accelstream.app.js","url":"app.js"},
     {"name":"accelstream.img","url":"app-icon.js","evaluate":true}
