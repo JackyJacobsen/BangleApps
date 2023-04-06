@@ -2,7 +2,7 @@
   "id": "accelstream",
   "name": "Acceleration Streamer",
   "shortName": "Accel Streamer",
-  "version": "0.08",
+  "version": "0.09",
   "description": "Sends acceleration data via Bluetooth",
   "icon": "app.png",
   "tags": "outdoor",
