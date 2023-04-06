@@ -1,13 +1,13 @@
 g.clear();
 
-Bangle.on('accel',function(a) {
+Bangle.on('accel', function(a) {
   var d = [
     "A",
-    Math.round((a.x + Number.EPSILON) * 100) / 100,
-    Math.round((a.y + Number.EPSILON) * 100) / 100,
-    Math.round((a.z + Number.EPSILON) * 100) / 100,
-    Math.round((a.diff + Number.EPSILON) * 100) / 100,
-    Math.round((a.mag + Number.EPSILON) * 100) / 100
+    +a.x.toFixed(5),
+    +a.y.toFixed(5),
+    +a.z.toFixed(5),
+    +a.diff.toFixed(5),
+    +a.mag.toFixed(5)
     ];
   Bluetooth.println(d.join(","));
 })
