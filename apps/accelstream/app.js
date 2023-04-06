@@ -1,8 +1,13 @@
 function setAccelHighOutput() {
+  // Bangle.accelWr(0x18,0b01110100); // off, +-8g
+  // Bangle.accelWr(0x1B,0x07 | 0x40); // 1600hz output, ODR/2 filter
+  // Bangle.accelWr(0x18,0b11110100); // +-8g
+  // Bangle.setPollInterval(0.625); // 1600hz input
+
   Bangle.accelWr(0x18,0b01110100); // off, +-8g
-  Bangle.accelWr(0x1B,0x08 | 0x40); // 1600hz output, ODR/2 filter
+  Bangle.accelWr(0x1B,0x03 | 0x40); // 100hz output, ODR/2 filter
   Bangle.accelWr(0x18,0b11110100); // +-8g
-  Bangle.setPollInterval(0.625); // 1600hz input
+  Bangle.setPollInterval(10); // 100hz input
 }
 
 function resetAccelOutput() {
