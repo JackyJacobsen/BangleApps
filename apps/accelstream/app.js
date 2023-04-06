@@ -35,8 +35,25 @@ function exit() {
   load();
 }
 
+function render() {
+  Bangle.drawWidgets();
+
+  var Layout = require("Layout");
+  var layout = new Layout({
+    btns:[{
+      id: "btnExit", 
+      label:/*LANG*/"EXIT", 
+      cb:()=>{
+        exit();
+      }
+    }]
+  });
+  layout.render();
+}
+
 function init() {
   g.clear();
+  render();
   // setWatch(function() {
   //   exit();
   // }, BTN2);
