@@ -31,14 +31,14 @@ function accelBluetoothHandler(a) {
 
 function exit() {
   Bangle.removeListener('accel', accelBluetoothHandler);
-  resetAccelOutput();
+  // resetAccelOutput();
   load();
 }
 
 function init() {
   g.clear();
   setWatch(exit, BTN2);
-  setAccelHighOutput();
+  // setAccelHighOutput();
   Bangle.on('accel', accelBluetoothHandler);
 }
 
