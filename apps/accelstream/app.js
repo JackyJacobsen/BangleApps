@@ -37,9 +37,9 @@ function exit() {
 
 function init() {
   g.clear();
-  setWatch(function() {
-    exit();
-  }, BTN2);
+  // setWatch(function() {
+  //   exit();
+  // }, BTN2);
   // setAccelHighOutput();
   Bangle.on('accel', accelBluetoothHandler);
 }
