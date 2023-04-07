@@ -23,9 +23,9 @@ function accelBluetoothHandler() {
   var a = Bangle.getAccel();
   var d = [
     "A",
-    +a.x.toFixed(5),
-    +a.y.toFixed(5),
-    +a.z.toFixed(5)
+    (a.x * 10).toFixed(5),
+    (a.y * 10).toFixed(5),
+    (a.z * 10).toFixed(5)
     // +a.diff.toFixed(5),
     // +a.mag.toFixed(5)
   ];
