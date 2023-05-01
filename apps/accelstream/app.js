@@ -1,15 +1,16 @@
 var intervalId;
+var counterIntervalId;
+var counter = 0;
 
 function setAccelHighOutput() {
-  // Bangle.accelWr(0x18,0b01110100); // off, +-8g
-  // Bangle.accelWr(0x1B,0x07 | 0x40); // 1600hz output, ODR/2 filter
-  // Bangle.accelWr(0x18,0b11110100); // +-8g
-  // Bangle.setPollInterval(10); // 1600hz input
-
   Bangle.accelWr(0x18,0b01110100); // off, +-8g
-  Bangle.accelWr(0x1B,0x03 | 0x40); // 100hz output, ODR/2 filter
+  Bangle.accelWr(0x1B,0x07 | 0x40); // 1600hz output, ODR/2 filter
   Bangle.accelWr(0x18,0b11110100); // +-8g
-  Bangle.setPollInterval(10); // 100hz input
+  
+  //Bangle.accelWr(0x18,0b01110100); // off, +-8g
+  //Bangle.accelWr(0x1B,0x03 | 0x40); // 100hz output, ODR/2 filter
+  //Bangle.accelWr(0x18,0b11110100); // +-8g
+  //Bangle.setPollInterval(10); // 100hz input
 }
 
 function resetAccelOutput() {
@@ -20,21 +21,25 @@ function resetAccelOutput() {
 }
 
 function accelBluetoothHandler() {
-  var a = Bangle.getAccel();
+  counter++;
+  var a = Bangle.readAccel();
   var d = [
     "A",
     (a.x * 10).toFixed(5),
     (a.y * 10).toFixed(5),
     (a.z * 10).toFixed(5)
-    // +a.diff.toFixed(5),
-    // +a.mag.toFixed(5)
   ];
   Bluetooth.println(d.join(","));
 }
 
+function checkHz() {
+  Terminal.println("hz: " + counter);
+  counter = 0;
+}
+
 function exit() {
   clearInterval(intervalId);
-  //Bangle.removeListener('accel', accelBluetoothHandler);
+  clearInterval(counterIntervalId);
   resetAccelOutput();
   load();
 }
@@ -46,9 +51,8 @@ function init() {
   }, BTN);
   setAccelHighOutput();
 
-  intervalId = setInterval(accelBluetoothHandler, 10);
-
-  //Bangle.on('accel', accelBluetoothHandler);
+  intervalId = setInterval(accelBluetoothHandler, 1);
+  counterIntervalId = setInterval(checkHz, 1000);
 }
 
 Bangle.loadWidgets();
