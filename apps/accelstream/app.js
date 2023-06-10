@@ -3,6 +3,7 @@ var hzCounterIntervalId;
 var hzCounter = 0;
 
 function setAccelHighOutput() {
+  Bangle.setPollInterval(4000); // reduce poll interval, as we read the accel values manually
   Bangle.accelWr(0x18,0b01110100); // off, +-8g
   Bangle.accelWr(0x1B,0x07 | 0x40); // 1600hz output, ODR/2 filter
   Bangle.accelWr(0x18,0b11110100); // +-8g
