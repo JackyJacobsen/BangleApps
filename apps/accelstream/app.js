@@ -5,9 +5,14 @@ var hzCounter = 0;
 function setAccelHighOutput() {
   Bangle.stopAccelPolling();
   Bangle.setPollInterval(1000); // reduce poll interval, as we read the accel values manually
-  Bangle.accelWr(0x18,0b01110100); // off, +-8g
+  Bangle.accelWr(0x18,0b01101100); // off, +-4g
   Bangle.accelWr(0x1B,0x07 | 0x40); // 1600hz output, ODR/2 filter
-  Bangle.accelWr(0x18,0b11110100); // +-8g
+  Bangle.accelWr(0x18,0b11101100); // +-4g
+
+  
+  // Bangle.accelWr(0x18,0b01110100); // off, +-8g
+  // Bangle.accelWr(0x1B,0x07 | 0x40); // 1600hz output, ODR/2 filter
+  // Bangle.accelWr(0x18,0b11110100); // +-8g
 }
 
 function resetAccelOutput() {
