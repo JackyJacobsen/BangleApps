@@ -1,6 +1,4 @@
 var intervalId;
-var hzCounterIntervalId;
-var hzCounter = 0;
 
 function setAccelHighOutput() {
   Bangle.stopAccelPolling();
@@ -20,17 +18,10 @@ function resetAccelOutput() {
 
 function accelBluetoothHandler() {
   Bangle.streamAccelBatch();
-  //hzCounter++;
-}
-
-function checkHz() {
-  Terminal.println("hz: " + hzCounter);
-  hzCounter = 0;
 }
 
 function exit() {
   clearInterval(intervalId);
-  //clearInterval(hzCounterIntervalId);
   resetAccelOutput();
   load();
 }
@@ -44,8 +35,7 @@ function init() {
   
   Bangle.initStreamAccel(Bluetooth);
 
-  intervalId = setInterval(accelBluetoothHandler, 1);
-  //hzCounterIntervalId = setInterval(checkHz, 1000);
+  intervalId = setInterval(accelBluetoothHandler, 20);
 }
 
 Bangle.loadWidgets();
